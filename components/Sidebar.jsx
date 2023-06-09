@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 import { IoMdSpeedometer } from "react-icons/io";
@@ -19,7 +19,7 @@ const sidebarContentData = [
     icon: <IoMdSpeedometer className="inline-block mr-3 ml-3" size={"1.5em"} />,
     text: "Overview",
     link: "/",
-    count: 28,
+    count: 0,
   },
   {
     id: 1,
@@ -53,7 +53,15 @@ export const sidebarSettingsData = [
 ];
 
 const Sidebar = () => {
-  const [expanded, setExpanded] = useState(true);
+  const checkExpanded = () => {
+    const sidebarState = localStorage.getItem("sidebarState");
+    if (sidebarState) {
+      return JSON.parse(sidebarState);
+    }
+    return true;
+  };
+
+  const [expanded, setExpanded] = useState(checkExpanded());
 
   // To get path name
   const currentPage = usePathname();
@@ -65,6 +73,19 @@ const Sidebar = () => {
   const isActive = (path) => {
     return currentPage === path;
   };
+
+  // fetch sidebar state from local storage
+  useEffect(() => {
+    const sidebarState = localStorage.getItem("sidebarState");
+    if (sidebarState) {
+      setExpanded(JSON.parse(sidebarState));
+    }
+  }, []);
+
+  // save sidebar state to local storage
+  useEffect(() => {
+    localStorage.setItem("sidebarState", JSON.stringify(expanded));
+  }, [expanded]);
 
   return (
     <aside className="sticky bg-blue-500 text-white h-screen min-w-fit flex flex-col pt-32 top-0">
@@ -86,7 +107,11 @@ const Sidebar = () => {
               </span>
             </span>
 
-            <span className={`${expanded ? "inline" : "hidden"} px-2`}>
+            <span
+              className={`${
+                expanded & (item.count > 0) ? "inline" : "hidden"
+              } px-2`}
+            >
               {item.count}
             </span>
           </Link>
@@ -113,17 +138,6 @@ const Sidebar = () => {
           </Link>
         ))}
       </div>
-
-      {/* <ul className="list-none flex flex-col gap-3 px-7">
-        <li className="flex items-center text-lg">
-          <BiGroup className="inline-block mr-3" size={"1.5rem"} />
-          Manage accounts
-        </li>
-        <li className="flex items-center text-lg">
-          <GoGear className="inline-block mr-3" size={"1.5rem"} />
-          Settings
-        </li>
-      </ul> */}
 
       <div className="bg-blue-400 h-0.5 my-5"></div>
 
