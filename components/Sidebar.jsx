@@ -54,11 +54,13 @@ export const sidebarSettingsData = [
 
 const Sidebar = () => {
   const checkExpanded = () => {
-    const sidebarState = localStorage.getItem("sidebarState");
-    if (sidebarState) {
-      return JSON.parse(sidebarState);
+    if (typeof window !== "undefined") {
+      const sidebarState = localStorage.getItem("sidebarState");
+      if (sidebarState) {
+        return JSON.parse(sidebarState);
+      }
+      return true;
     }
-    return true;
   };
 
   const [expanded, setExpanded] = useState(checkExpanded());
@@ -88,7 +90,7 @@ const Sidebar = () => {
   }, [expanded]);
 
   return (
-    <aside className="sticky bg-blue-500 text-white h-screen min-w-fit flex flex-col pt-32 top-0">
+    <aside className="sticky bg-[#1e73e8] text-white h-screen min-w-fit flex flex-col pt-32 top-0">
       <div className="flex-1 flex flex-col gap-2">
         {sidebarContentData.map((item) => (
           <Link
@@ -96,8 +98,8 @@ const Sidebar = () => {
             key={item.id}
             className={`${
               isActive(item.link)
-                ? "bg-white text-blue-500"
-                : "bg-blue-500 hover:bg-blue-400"
+                ? "bg-white text-[#1e73e8]"
+                : "bg-[#1e73e8] hover:bg-[#317eea]"
             }  flex text-lg items-center cursor-pointer p-2 mr-2 rounded-r-full`}
           >
             <span className="flex-1 font-medium">
@@ -125,8 +127,8 @@ const Sidebar = () => {
             key={item.id}
             className={`${
               isActive(item.link)
-                ? "bg-white text-blue-500"
-                : "bg-blue-500 hover:bg-blue-400"
+                ? "bg-white text-[#1e73e8]"
+                : "bg-[#1e73e8] hover:bg-[#317eea]"
             }  flex text-lg items-center cursor-pointer p-2 mr-2 rounded-r-full`}
           >
             <span className="flex-1 font-medium">
@@ -139,7 +141,7 @@ const Sidebar = () => {
         ))}
       </div>
 
-      <div className="bg-blue-400 h-0.5 my-5"></div>
+      <div className="bg-[#317eea] h-0.5 my-5"></div>
 
       <button onClick={toggleExpanded}>
         {expanded ? (

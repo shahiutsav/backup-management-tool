@@ -1,6 +1,7 @@
 import "@styles/globals.css";
 import Sidebar from "@components/Sidebar";
 import { Poppins } from "next/font/google";
+import Navbar from "@components/Navbar";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -18,7 +19,10 @@ const RootLayout = ({ children }) => {
       <body>
         <main className={`flex ${poppins.className}`}>
           <Sidebar />
-          {children}
+          <div className="flex flex-col flex-1">
+            <Navbar />
+            {children}
+          </div>
         </main>
       </body>
     </html>
