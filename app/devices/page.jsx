@@ -1,5 +1,5 @@
 const Devices = () => {
-  return <div>Devices</div>;
+  return <div className="overflow-y-auto flex-1 h-full">Devices</div>;
 };
 
 export default Devices;

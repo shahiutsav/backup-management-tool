@@ -4,7 +4,10 @@ import { BsPerson } from "react-icons/bs";
 
 const Navbar = () => {
   return (
-    <nav className="border-2 h-min w-full overflow-hidden flex py-2 px-5">
+    <nav
+      id="navbar"
+      className="sticky top-0 bg-white border-b-2 h-min w-full overflow-hidden flex py-2 px-5"
+    >
       {/* Search bar */}
       <div className="flex items-center flex-1">
         <TfiSearch
@@ -17,18 +20,22 @@ const Navbar = () => {
         />
       </div>
       <div className="flex items-center gap-8 h-full">
+        {/* Add Device Button */}
         <button className="bg-[#1e73e8] px-7 border-none text-white font-medium rounded-full h-full">
           Add Device
         </button>
 
+        {/* Menu button */}
         <button>
           <TbGridDots size={"1.8em"} />
         </button>
 
+        {/* Help button */}
         <button>
           <TfiHelpAlt size={"1.8em"} />
         </button>
 
+        {/* Profile button */}
         <button>
           <BsPerson size={"1.8em"} />
         </button>

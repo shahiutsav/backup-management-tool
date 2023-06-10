@@ -17,7 +17,7 @@ const RootLayout = ({ children }) => {
   return (
     <html lang="en">
       <body>
-        <main className={`flex ${poppins.className}`}>
+        <main className={`flex ${poppins.className} text-[#666666]`}>
           <Sidebar />
           <div className="flex flex-col flex-1">
             <Navbar />
