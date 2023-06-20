@@ -6,7 +6,7 @@ import { FiMonitor, FiDownload, FiUpload } from "react-icons/fi";
 
 const DetailViewBar = () => {
   return (
-    <aside className={`w-min-content border-l-2 sticky right-0 `}>
+    <aside className="w-min-content border-l-2 sticky right-0">
       <div className="flex px-2 py-2 border-b-2 items-center divide-x">
         <div className="flex items-center pr-2 gap-2">
           {/* Schedule button probably */}
