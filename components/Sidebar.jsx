@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { usePathname } from "next/navigation";
 
 import { IoMdSpeedometer } from "react-icons/io";
@@ -19,7 +19,7 @@ const sidebarContentData = [
     icon: <IoMdSpeedometer className="inline-block mr-3 ml-3" size={"1.5em"} />,
     text: "Overview",
     link: "/",
-    count: 0,
+    count: 89,
   },
   {
     id: 1,
@@ -53,17 +53,7 @@ export const sidebarSettingsData = [
 ];
 
 const Sidebar = () => {
-  const checkExpanded = () => {
-    if (typeof window !== "undefined") {
-      const sidebarState = localStorage.getItem("sidebarState");
-      if (sidebarState) {
-        return JSON.parse(sidebarState);
-      }
-      return true;
-    }
-  };
-
-  const [expanded, setExpanded] = useState(checkExpanded());
+  const [expanded, setExpanded] = useState(null);
 
   // To get path name
   const currentPage = usePathname();
@@ -100,7 +90,7 @@ const Sidebar = () => {
               isActive(item.link)
                 ? "bg-white text-[#1e73e8]"
                 : "bg-[#1e73e8] hover:bg-[#317eea]"
-            }  flex text-lg items-center cursor-pointer p-2 mr-2 rounded-r-full`}
+            }  flex text-lg items-center cursor-pointer p-2 mr-2 rounded-r-full transition-all duration-300`}
           >
             <span className="flex-1 font-medium">
               <span>{item.icon}</span>

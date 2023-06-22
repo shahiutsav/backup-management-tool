@@ -23,6 +23,13 @@ const dummyDevices = [
     is_active: true,
     description: "This is a description",
     created_at: "2021-08-10T14:00:00.000000Z",
+    protection: "Protected",
+    lastBackup: "2021-08-10T14:00:00.000000Z",
+    total_size: "100 GB",
+    agent_version: "1.0.0",
+    cpu: "Intel Core i7-10700K",
+    ram: "16 GB",
+    service_quota: "Servers",
   },
   {
     id: 2,
@@ -37,6 +44,13 @@ const dummyDevices = [
     is_active: true,
     description: "This is a description",
     created_at: "2021-08-10T14:00:00.000000Z",
+    protection: "Unprotected",
+    lastBackup: "2021-08-10T14:00:00.000000Z",
+    total_size: "100 GB",
+    agent_version: "1.0.0",
+    cpu: "Intel Core i7-10700K",
+    ram: "16 GB",
+    service_quota: "Servers",
   },
   {
     id: 3,
@@ -51,6 +65,13 @@ const dummyDevices = [
     is_active: true,
     description: "This is a description",
     created_at: "2021-08-10T14:00:00.000000Z",
+    protection: "Warning",
+    lastBackup: "2021-08-10T14:00:00.000000Z",
+    total_size: "100 GB",
+    agent_version: "1.0.0",
+    cpu: "Intel Core i7-10700K",
+    ram: "16 GB",
+    service_quota: "Servers",
   },
   {
     id: 4,
@@ -65,6 +86,13 @@ const dummyDevices = [
     is_active: true,
     description: "This is a description",
     created_at: "2021-08-10T14:00:00.000000Z",
+    protection: "Protected",
+    lastBackup: "2021-08-10T14:00:00.000000Z",
+    total_size: "100 GB",
+    agent_version: "1.0.0",
+    cpu: "Intel Core i7-10700K",
+    ram: "16 GB",
+    service_quota: "Servers",
   },
   {
     id: 5,
@@ -79,6 +107,13 @@ const dummyDevices = [
     is_active: false,
     description: "This is a description",
     created_at: "2021-08-10T14:00:00.000000Z",
+    protection: "Protected",
+    lastBackup: "2021-08-10T14:00:00.000000Z",
+    total_size: "100 GB",
+    agent_version: "1.0.0",
+    cpu: "Intel Core i7-10700K",
+    ram: "16 GB",
+    service_quota: "Servers",
   },
 ];
 
@@ -115,7 +150,18 @@ const Devices = () => {
             </td>
             <td>
               <div className="flex items-center gap-2 py-3 pl-2">
-                <BsShieldCheck size={"1em"} className="text-green-500" />
+                {device.protection === "Protected" && (
+                  <BsShieldCheck size={"1em"} className="text-green-500" />
+                )}
+                {device.protection === "Warning" && (
+                  <BsShieldExclamation
+                    size={"1em"}
+                    className="text-yellow-500"
+                  />
+                )}
+                {device.protection === "Unprotected" && (
+                  <BsShieldSlash size={"1em"} className="text-red-500" />
+                )}
                 <span>{device.protection}</span>
               </div>
             </td>
@@ -129,7 +175,17 @@ const Devices = () => {
                 <span>{device.is_active ? "Online" : "Offline"}</span>
               </div>
             </td>
-            <td>{device.lastBackup}</td>
+            <td>
+              <span>
+                {new Date(device.lastBackup).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                })}
+              </span>
+            </td>
           </tr>
         ))}
       </tbody>
