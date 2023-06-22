@@ -15,6 +15,8 @@ import BreadCrumbs from "@components/BreadCrumbs";
 const Devices = () => {
   const [devices, setDevices] = useState([]);
 
+  const [selectedDeviceId, setSelectedDeviceId] = useState(1);
+
   useEffect(() => {
     const fetchDevices = async () => {
       const res = await fetch("http://localhost:3001/devices");
@@ -26,7 +28,9 @@ const Devices = () => {
     fetchDevices();
   }, []);
 
-  console.log(devices);
+  const handleSelection = (id) => {
+    setSelectedDeviceId(id);
+  };
 
   return (
     <>
@@ -46,7 +50,12 @@ const Devices = () => {
               {devices.map((device) => (
                 <tr
                   key={device.id}
-                  className="cursor-pointer hover:bg-[#e2f2ff]"
+                  className={`cursor-pointer ${
+                    selectedDeviceId === device.id
+                      ? "bg-[#e2f2ff]"
+                      : "hover:bg-[#f2faff]"
+                  }`}
+                  onClick={() => handleSelection(device.id)}
                 >
                   <td>
                     <div className="flex items-center gap-2 py-3 pl-2">
@@ -101,7 +110,7 @@ const Devices = () => {
           </table>
         </div>
       </div>
-      <DetailViewBar />
+      <DetailViewBar id={selectedDeviceId} />
     </>
   );
 };

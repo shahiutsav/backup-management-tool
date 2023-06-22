@@ -3,8 +3,24 @@ import { BiErrorCircle, BiTransfer, BiGridAlt } from "react-icons/bi";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { GiInfo } from "react-icons/gi";
 import { FiMonitor, FiDownload, FiUpload } from "react-icons/fi";
+import { useEffect, useState } from "react";
 
-const DetailViewBar = () => {
+const DetailViewBar = ({ id }) => {
+  const [deviceDetails, setDeviceDetails] = useState(null);
+
+  console.log(id);
+
+  useEffect(() => {
+    const fetchDevice = async () => {
+      const res = await fetch(`http://localhost:3001/devices/${id}`);
+      const data = await res.json();
+
+      setDeviceDetails(data);
+    };
+
+    fetchDevice();
+  }, [id]);
+
   return (
     <aside className="w-min-content border-l-2 sticky right-0">
       <div className="flex px-2 py-2 border-b-2 items-center divide-x">
@@ -48,7 +64,7 @@ const DetailViewBar = () => {
         <div className="flex gap-4 items-center pb-5">
           <FiMonitor size={"1.8em"} />
           <div className="flex-col">
-            <p>Device Name: GZ00-01</p>
+            <p>{deviceDetails?.name}</p>
             <p>Line two</p>
           </div>
         </div>
