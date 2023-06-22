@@ -1,7 +1,5 @@
 "use client";
 
-import BreadCrumbs from "@components/BreadCrumbs";
-import DetailViewBar from "@components/DetailViewBar";
 import { useEffect, useState } from "react";
 
 const DevicesLayout = ({ children }) => {
@@ -23,12 +21,7 @@ const DevicesLayout = ({ children }) => {
           : {}
       }
     >
-      <div className="flex flex-col flex-1">
-        <BreadCrumbs />
-
-        <div className="flex-1 overflow-y-scroll px-10">{children}</div>
-      </div>
-      <DetailViewBar />
+      {children}
     </div>
   );
 };
