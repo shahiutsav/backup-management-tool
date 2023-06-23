@@ -27,7 +27,13 @@ const DetailViewBar = ({ id }) => {
     fetchDevice();
   }, [id]);
 
-  console.log(id);
+  const convertSize = (size) => {
+    if (size < 1024) {
+      return `${size} GB`;
+    } else {
+      return `${(size / 1024).toFixed(2)} TB`;
+    }
+  };
 
   return (
     <aside className="w-min border-l-2 sticky right-0">
@@ -101,7 +107,7 @@ const DetailViewBar = ({ id }) => {
         <div className="mx-auto flex items-center"></div>
         <div className="pl-3 border-b py-3">
           <p className="font-light">Total backup size in cloud:</p>
-          <p className="text-gray-700">{deviceDetails?.total_size} GB</p>
+          <p className="text-gray-700">{convertSize(deviceDetails?.total_size)}</p>
         </div>
 
         <div className="mx-auto flex items-center"></div>
