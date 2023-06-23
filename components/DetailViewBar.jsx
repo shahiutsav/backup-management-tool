@@ -27,6 +27,8 @@ const DetailViewBar = ({ id }) => {
     fetchDevice();
   }, [id]);
 
+  console.log(id);
+
   return (
     <aside className="w-min border-l-2 sticky right-0">
       <div className="flex px-2 py-1 border-b-2 items-center divide-x place-content-between">
@@ -94,12 +96,12 @@ const DetailViewBar = ({ id }) => {
         </div>
         <div className="pl-3 border-b py-3">
           <p className="font-light">IP address:</p>
-          <p className="text-gray-700">192.168.100.100</p>
+          <p className="text-gray-700">{deviceDetails?.ip_address}</p>
         </div>
         <div className="mx-auto flex items-center"></div>
         <div className="pl-3 border-b py-3">
           <p className="font-light">Total backup size in cloud:</p>
-          <p className="text-gray-700">1.85 GB</p>
+          <p className="text-gray-700">{deviceDetails?.total_size} GB</p>
         </div>
 
         <div className="mx-auto flex items-center"></div>
@@ -114,7 +116,9 @@ const DetailViewBar = ({ id }) => {
         </div>
         <div className="pl-3 border-b py-3">
           <p className="font-light">Agent Version:</p>
-          <p className="text-gray-700">12.6.12081/Windows 10 (64-bit)</p>
+          <p className="text-gray-700">
+            {deviceDetails?.agent_version}/{deviceDetails?.os_name}
+          </p>
         </div>
 
         <div className="mx-auto flex items-center">
@@ -122,11 +126,11 @@ const DetailViewBar = ({ id }) => {
         </div>
         <div className="pl-3 border-b py-3 grid grid-cols-[1fr_5fr]">
           <p className="font-light">OS: </p>
-          <p className="text-gray-700">Windows 10</p>
+          <p className="text-gray-700">{deviceDetails?.os_name}</p>
           <p className="font-light">CPU: </p>
-          <p className="text-gray-700">Intel&reg; Xeon&reg; W-2295</p>
+          <p className="text-gray-700">{deviceDetails?.cpu}</p>
           <p className="font-light">RAM: </p>
-          <p className="text-gray-700">32 GB</p>
+          <p className="text-gray-700">{deviceDetails?.ram}</p>
         </div>
 
         <div className="mx-auto flex items-center">
@@ -137,7 +141,7 @@ const DetailViewBar = ({ id }) => {
             <p className="font-light flex-1">Service quota:</p>
             <p className="text-[#1e73e8] cursor-pointer">Change</p>
           </div>
-          <p className="text-gray-700">1.85 GB</p>
+          <p className="text-gray-700">{deviceDetails?.service_quota}</p>
         </div>
 
         <div className="mx-auto flex items-center">

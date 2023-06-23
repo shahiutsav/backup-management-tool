@@ -15,7 +15,7 @@ import BreadCrumbs from "@components/BreadCrumbs";
 const Devices = () => {
   const [devices, setDevices] = useState([]);
 
-  const [selectedDeviceId, setSelectedDeviceId] = useState(1);
+  const [selectedDeviceId, setSelectedDeviceId] = useState(0);
 
   useEffect(() => {
     const fetchDevices = async () => {
@@ -95,7 +95,7 @@ const Devices = () => {
                   </td>
                   <td>
                     <span>
-                      {new Date(device.lastBackup).toLocaleDateString("en-US", {
+                      {new Date(device.last_backup).toLocaleDateString("en-US", {
                         year: "numeric",
                         month: "long",
                         day: "numeric",
