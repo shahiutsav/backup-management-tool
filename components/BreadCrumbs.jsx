@@ -3,7 +3,7 @@ import { HiOutlineHome } from "react-icons/hi";
 
 const BreadCrumbs = () => {
   return (
-    <div className="flex border-b-2 py-5 px-7">
+    <div className="flex border-b-2 py-3.5 px-7">
       {/* Breadcrumbs */}
       <div className="flex-1 flex items-center gap-2">
         <HiOutlineHome size={"1.3em"} />

@@ -40,10 +40,10 @@ const Devices = () => {
           <table className="w-full table-auto text-left">
             <thead className="sticky top-0 z-1 bg-white border-0 after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:border-b-2">
               <tr>
-                <th className="font-thin py-3 text-sm">Name</th>
-                <th className="font-thin py-3 text-sm">Protection</th>
-                <th className="font-thin py-3 text-sm">Status</th>
-                <th className="font-thin py-3 text-sm">Last backup</th>
+                <th className="font-light py-3 text-sm">Name</th>
+                <th className="font-light py-3 text-sm">Protection</th>
+                <th className="font-light py-3 text-sm">Status</th>
+                <th className="font-light py-3 text-sm">Last backup</th>
               </tr>
             </thead>
             <tbody className="font-normal text-gray-700">
