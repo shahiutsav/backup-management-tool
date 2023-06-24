@@ -7,6 +7,8 @@ import {
   BsShieldCheck,
   BsShieldExclamation,
   BsShieldSlash,
+  BsThreeDots,
+  BsThreeDotsVertical,
 } from "react-icons/bs";
 
 import DetailViewBar from "@components/DetailViewBar";
@@ -41,9 +43,12 @@ const Devices = () => {
             <thead className="sticky top-0 z-1 bg-white border-0 after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:border-b-2">
               <tr>
                 <th className="font-light py-3 text-sm">Name</th>
-                <th className="font-light py-3 text-sm">Protection</th>
+                <th className="font-light py-3 text-sm md:hidden xl:table-cell">Protection</th>
                 <th className="font-light py-3 text-sm">Status</th>
-                <th className="font-light py-3 text-sm">Last backup</th>
+                <th className="font-light py-3 text-sm md:hidden xl:table-cell">Last backup</th>
+                <th className="font-light py-3 text-sm md:table-cell xl:hidden">
+                  <BsThreeDots />
+                </th>
               </tr>
             </thead>
             <tbody className="font-normal text-gray-700">
@@ -63,7 +68,7 @@ const Devices = () => {
                       <span>{device.name}</span>
                     </div>
                   </td>
-                  <td>
+                  <td className="md:hidden xl:table-cell">
                     <div className="flex items-center gap-2 py-3 pl-2">
                       {device.protection === "Protected" && (
                         <BsShieldCheck
@@ -93,15 +98,24 @@ const Devices = () => {
                       <span>{device.is_active ? "Online" : "Offline"}</span>
                     </div>
                   </td>
-                  <td>
+                  <td className="md:hidden xl:table-cell">
                     <span>
-                      {new Date(device.last_backup).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                        hour: "numeric",
-                        minute: "numeric",
-                      })}
+                      {new Date(device.last_backup).toLocaleDateString(
+                        "en-US",
+                        {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                          hour: "numeric",
+                          minute: "numeric",
+                        }
+                      )}
+                    </span>
+                  </td>
+
+                  <td className="md:table-cell xl:hidden">
+                    <span>
+                      <BsThreeDotsVertical />
                     </span>
                   </td>
                 </tr>

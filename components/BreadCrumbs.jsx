@@ -1,5 +1,6 @@
 import { LuFolderPlus, LuFolderInput } from "react-icons/lu";
 import { HiOutlineHome } from "react-icons/hi";
+import { BsThreeDots } from "react-icons/bs";
 
 const BreadCrumbs = () => {
   return (
@@ -8,7 +9,13 @@ const BreadCrumbs = () => {
       <div className="flex-1 flex items-center gap-2">
         <HiOutlineHome size={"1.3em"} />
 
-        <span>&gt; Devices &gt; Offices &gt; Kathmandu</span>
+        <span className="flex items-center gap-2">
+          &gt; Devices &gt; <span className="md:hidden xl:inline">Offices</span>
+          <span className="md:inline xl:hidden">
+            <BsThreeDots />
+          </span>
+          &gt; Kathmandu
+        </span>
       </div>
 
       {/* Buttons */}
